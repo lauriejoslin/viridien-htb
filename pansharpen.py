@@ -14,7 +14,7 @@ def greyscalify(image_dir: str) -> Image:
   elevation_max = np.max(lidar_elevation)
   elevation_min = np.min(lidar_elevation)
 
-  normalised_lidar = (lidar_elevation - elevation_min)/(elevation_max - elevation_min)*255
+  normalised_lidar = (lidar_elevation - elevation_min)/(elevation_max - elevation_min)
 
   global lidar_image
 
@@ -23,25 +23,19 @@ def greyscalify(image_dir: str) -> Image:
   return lidar_image
 
 #test
-lidar_grey = greyscalify('data/DSM_TQ0075_P_12757_20230109_20230315.tif')
-lidar_grey.show()
-print(lidar_grey.size)
 
-def dimensions(path):
+
+
+"""def dimensions(image: Image):
    
-    image = Image.open(path)
-    width, height = image.size
-    if (width/height) == 1:
-        image = image.thumbnail((lidar_image.size))
-    else:
-        image = image.resize((lidar_image.size), Image.LANCZOS)
+    image = image.resize((5000, 5000), Image.LANCZOS)
     return image 
-
+"""
 
 
 
 def pansharpen(image_array1, image_array2):
-    rgb_values = np.array([0.21, 0.72, 0.07])
+    rgb_values = np.array([0.299, 0.587, 0.114])
     psuedo_pan_array = np.true_divide((image_array1*rgb_values).sum(axis=2), rgb_values.sum())
     ratio = image_array2/psuedo_pan_array
     new_red = image_array1[:, :, 0] * ratio
@@ -53,15 +47,19 @@ def pansharpen(image_array1, image_array2):
 
 
 
-image1 = dimensions('data/satellite.jpg')
-image1.load()
-
+image1 = Image.open('data/satellite.jpg')
+image1 = image1.resize((5000, 5000), Image.LANCZOS)
+image1.show()
+print(image1.size)
 data1 = np.asarray(image1, dtype="int32")
 
 
+
+
+lidar_grey = greyscalify('data/DSM_TQ0075_P_12757_20230109_20230315.tif')
+lidar_grey= lidar_grey.resize((5000, 5000), Image.LANCZOS)
 data2 = np.asarray(lidar_grey, dtype="int32")
-lidar_resize = resize(data2, (500, 500))
-print(lidar_resize.shape)
+
 
 panimage = pansharpen(data1, data2)
 panimage.show()

@@ -247,9 +247,9 @@ def visualize_results(original, upscaled, enhanced, output_path="upscaling_compa
 # Example usage:
 if __name__ == "__main__":
     # Paths to the input files
-    sentinel_path = "20230215-SE2B-CGG-GBR-MS3-L3-RGB-preview.jpg"  # Change to your Sentinel file
-    lidar_path = "DSM_TQ0075_P_12757_20230109_20230315.tif"  # Change to your lidar file
-    tfw_path = "DSM_TQ0075_P_12757_20230109_20230315.tfw"  # TFW file
+    sentinel_path = "data/20230215-SE2B-CGG-GBR-MS3-L3-RGB-preview.jpg"  # Change to your Sentinel file
+    lidar_path = "data/DSM_TQ0075_P_12757_20230109_20230315.tif"  # Change to your lidar file
+    tfw_path = "data/DSM_TQ0075_P_12757_20230109_20230315.tfw"  # TFW file
     output_path = "upscaled_sentinel.tif"
     
     # Check if inputs exist and proceed

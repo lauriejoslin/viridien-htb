@@ -14,3 +14,12 @@ Our model first trains on the 64x64 images found in the EuroSAT dataset. For bet
 We then slice the target RGB satellite image given in this challenge into 64x64 slices, before predicting their classes.
 
 ![classification](https://github.com/user-attachments/assets/063c936b-a27c-408a-9f65-d31a6c3bae1d)
+
+Given that each square is 64x64 pixels, for a 10m x 10m resolution, each square is ~0.41 km square of land.
+The top 4 rows (roughly where the new runway will be) contain:
+- 7 residential squares (2.87 km square)
+- 6 highway squares (2.46 km square)
+- 14 pasture squares (5.74 km square)
+- 1 Vegetation2 square (0.41 km square)
+
+  
